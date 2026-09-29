@@ -1,0 +1,47 @@
+{
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(behave:*)",
+      "Bash(gh:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git pull:*)",
+      "Bash(git push:*)",
+      "Bash(pre-commit:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:pypi.org)",
+      "WebSearch"
+    ]
+  },
+  "sandbox": {
+    "autoAllowBashIfSandboxed": true,
+    "enabled": true,
+    "excludedCommands": [
+      "docker",
+      "gh",
+      "git",
+      "pre-commit"
+    ],
+    "network": {
+      "allowLocalBinding": true,
+      "allowUnixSockets": [
+        "/var/run/docker.sock"
+      ]
+    }
+  }
+}
