@@ -1,4 +1,4 @@
-FROM python:3.11-slim AS base
+FROM python:3.14-slim AS base
 
 LABEL org.opencontainers.image.title="angrymiao"
 LABEL org.opencontainers.image.description="Command-line firmware upgrades for Angry Miao devices"
