@@ -1,4 +1,4 @@
-"""sample step definitions for angrymiao."""
+"""command-line smoke test steps for angrymiao."""
 
 import subprocess
 import sys
@@ -13,11 +13,11 @@ def available_application(context: Context) -> None:  # noqa: ARG001
     import angrymiao  # noqa: F401
 
 
-@when("I run the application")
+@when("I run the application help command")
 def run_application(context: Context) -> None:
-    """runs the application as a subprocess."""
+    """runs the help command as a subprocess."""
     result = subprocess.run(
-        [sys.executable, "-m", "angrymiao"],
+        [sys.executable, "-m", "angrymiao", "--help"],
         capture_output=True,
         text=True,
     )

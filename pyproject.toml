@@ -17,10 +17,13 @@ classifiers = [
     "Typing :: Typed",
 ]
 
-dependencies = []
+dependencies = [
+    "pyserial>=3.5",
+    "requests>=2.34.2",
+]
 
 [project.scripts]
-angrymiao = "angrymiao.__main__:main"
+am = "angrymiao.__main__:main"
 
 [project.optional-dependencies]
 # development dependencies
@@ -36,7 +39,6 @@ dev = [
     "python-lsp-server~=1.14",
     "requests~=2.32",
     "ruff~=0.9",
-    "testcontainers~=4.13",
 ]
 
 [project.urls]
@@ -88,7 +90,7 @@ exclude = ["venv/", "build/", "dist/"]
 
 # ignores third-party packages without type stubs
 [[tool.mypy.overrides]]
-module = ["requests", "hamcrest", "testcontainers.*"]
+module = ["requests", "hamcrest"]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]

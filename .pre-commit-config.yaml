@@ -50,7 +50,7 @@ repos:
       - id: forbid-submodules
       - id: forbid-new-submodules
       - id: no-commit-to-branch
-        args: ['--branch', 'main', '--pattern', 'features/.*', '--pattern', 'releases/.*']
+        args: ['--branch', 'main']
 
   - repo: https://github.com/psf/black
     rev: 25.11.0
