@@ -26,7 +26,7 @@ angrymiao = "angrymiao.__main__:main"
 # development dependencies
 dev = [
     "behave~=1.2",
-    "black~=25.11",
+    "black>=25.11,<27.0",
     "mypy~=1.14",
     "pre-commit~=4.3",
     "PyHamcrest~=2.1",
