@@ -21,6 +21,8 @@ class DeviceError(Exception):
 
 @dataclass(frozen=True)
 class Device:
+    """identifies a supported usb serial device."""
+
     id: str
     name: str
     product_id: str

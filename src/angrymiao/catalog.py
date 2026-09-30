@@ -33,12 +33,14 @@ class FirmwareError(Exception):
 
 @dataclass(frozen=True)
 class Release:
+    """identifies a published firmware release."""
+
     product_id: str
     version: str
     url: str
 
 
-class ProgressMeter:
+class ProgressMeter:  # pylint: disable=too-few-public-methods
     """shows a byte count and percentage while a package is transferred."""
 
     def __init__(self, total: int | None) -> None:
@@ -49,6 +51,8 @@ class ProgressMeter:
         self.tick = 0
 
     def update(self, received: int, *, done: bool = False) -> None:
+        """reports download progress in bytes and percentage."""
+
         percent = min(100, received * 100 // self.total) if self.total else None
         now = time.monotonic()
         if not done:
@@ -71,9 +75,9 @@ class ProgressMeter:
             )
         else:
             filled = percent * 20 // 100
-            bar = "#" * filled + "." * (20 - filled)
+            meter_bar = "#" * filled + "." * (20 - filled)
             message = (
-                f"Downloading: [{bar}] {percent:3d}% "
+                f"Downloading: [{meter_bar}] {percent:3d}% "
                 f"({received:,}/{self.total:,} bytes)"
             )
             self.last_percent = percent
@@ -153,6 +157,8 @@ class FirmwareService:
         self.timeout = timeout
 
     def check(self, product_id: str) -> Release:
+        """retrieves the latest release for a supported product."""
+
         if product_id not in PASSWORDS:
             raise FirmwareError(f"No firmware service mapping for {product_id}.")
         try:
@@ -272,7 +278,11 @@ class FirmwareService:
             f"the device remains in normal mode: {last_error}"
         )
 
-    def _download_url(self, url: str, destination: Path, *, progress: bool) -> None:
+    def _download_url(  # pylint: disable=too-many-locals,too-many-branches
+        self, url: str, destination: Path, *, progress: bool
+    ) -> None:
+        """streams a vendor package with size and checksum checks."""
+
         with self.session.get(
             url,
             stream=True,

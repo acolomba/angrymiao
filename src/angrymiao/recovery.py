@@ -25,6 +25,8 @@ DFU_PID = 0x521F
 
 @dataclass(frozen=True)
 class Recovery:
+    """retains the package and port for interrupted dfu."""
+
     device: Device
     release: Release
     package: Path
