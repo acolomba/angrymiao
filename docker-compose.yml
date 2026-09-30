@@ -1,5 +1,0 @@
-services:
-  angrymiao:
-    image: acolomba/angrymiao
-    container_name: angrymiao
-    restart: unless-stopped

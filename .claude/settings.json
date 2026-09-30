@@ -32,16 +32,12 @@
     "autoAllowBashIfSandboxed": true,
     "enabled": true,
     "excludedCommands": [
-      "docker",
       "gh",
       "git",
       "pre-commit"
     ],
     "network": {
-      "allowLocalBinding": true,
-      "allowUnixSockets": [
-        "/var/run/docker.sock"
-      ]
+      "allowLocalBinding": true
     }
   }
 }

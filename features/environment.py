@@ -14,7 +14,7 @@ logger = logging.getLogger("features.steps")
 
 
 def before_all(context: Context) -> None:
-    """configures logging, creates test artifact directory, and initializes execution mode."""
+    """configures logging and creates a test artifact directory."""
     # step definitions logging
     log_level = context.config.userdata.get("log_level", "INFO")
     numeric_level = getattr(logging, log_level.upper(), None)
@@ -26,27 +26,6 @@ def before_all(context: Context) -> None:
     # creates a temporary directory for test artifacts
     context.test_run_dir = Path(tempfile.mkdtemp(prefix="angrymiao_test_"))
     logger.info("test run directory: %s", context.test_run_dir)
-
-    # checks implementation mode
-    implementation = context.config.userdata.get("implementation", "direct")
-
-    if implementation == "docker":
-        _setup_docker_mode(context)
-    else:
-        _setup_direct_mode(context)
-
-
-def _setup_direct_mode(context: Context) -> None:  # noqa: ARG001
-    """sets up direct mode for testing."""
-    # TODO: add direct mode setup (e.g. start mock services)
-
-
-def _setup_docker_mode(context: Context) -> None:  # noqa: ARG001
-    """sets up docker mode with testcontainers."""
-    raise NotImplementedError(
-        "docker mode is not yet implemented. "
-        "use implementation=direct in behave.ini userdata."
-    )
 
 
 def after_all(context: Context) -> None:

@@ -1,14 +1,5 @@
 version: 2
 updates:
-  # docker
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    labels:
-      - "dependencies"
-      - "docker"
-
   # python
   - package-ecosystem: "pip"
     directory: "/"
